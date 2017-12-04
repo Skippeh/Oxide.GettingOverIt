@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DF483424-72B1-4BA7-9FE1-18A66DD6F7B5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Oxide.GettingOverIt</RootNamespace>
+    <AssemblyName>Oxide.GettingOverIt</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ManagedDir>GettingOverIt_Data\Managed</ManagedDir>
+    <SteamAppId>240720</SteamAppId>
+    <SteamBranch>public</SteamBranch>
+    <SteamLogin>anonymous</SteamLogin>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Oxide.References" Version="2.0.*" />
+    <PackageReference Include="Oxide.Core" Version="2.0.*" />
+    <PackageReference Include="Oxide.CSharp" Version="2.0.*" />
+    <PackageReference Include="Oxide.MySql" Version="2.0.*" />
+    <PackageReference Include="Oxide.SQLite" Version="2.0.*" />
+    <PackageReference Include="Oxide.Unity" Version="2.0.*" />
+    <Reference Include="Assembly-CSharp">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\$(ManagedDir)\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Dependencies\$(ManagedDir)\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Dependencies\$(ManagedDir)\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GOICore.cs" />
+    <Compile Include="GOIExtension.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="BeforeBuild">
+    <!-- Currently only works on Windows due to Windows-only tools used -->
+    <Exec Command="powershell -ExecutionPolicy Bypass $(SolutionDir)Steam.ps1 -project '$(AssemblyName)' -dotnet 'net35' -appid '$(SteamAppId)' -branch '$(SteamBranch)' -managed '$(ManagedDir)'" />
+  </Target>
+</Project>
