@@ -1,0 +1,38 @@
+﻿namespace Oxide.GettingOverIt.Types
+{
+    public enum LayerType
+    {
+        Default,
+        TransparentFX,
+        IgnoreRaycast,
+        Layer3,
+        Water,
+        UI,
+        Layer6,
+        Layer7,
+        Player,
+        Pole,
+        Terrain,
+        Sky,
+        Background,
+        FogVolumeShadowCaster,
+        FogVolume,
+        FogVolumeSurrogate,
+        Tree,
+        FogVolumeUniform,
+        Rope,
+        Illuminator,
+        Bat,
+        Layer21,
+        Layer22,
+        Layer23,
+        Layer24,
+        Layer25,
+        Layer26,
+        Layer27,
+        Layer28,
+        Layer29,
+        Layer30,
+        Layer31
+    }
+}
