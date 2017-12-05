@@ -12,16 +12,11 @@ Support for each game and plugin language is added via extensions. When loading,
 
 ## Bundled Extensions
 
- * Oxide.CSharp - _Allows plugins written in [CSharp](http://en.wikipedia.org/wiki/C_Sharp_(programming_language)) to be loaded_
+ * <del>Oxide.CSharp - _Allows plugins written in [CSharp](http://en.wikipedia.org/wiki/C_Sharp_(programming_language)) to be loaded_</del>
  * Oxide.MySql - _Allows plugins to access a [MySQL](http://www.mysql.com/) database_
  * Oxide.SQLite - _Allows plugins to access a [SQLite](http://www.sqlite.org/) database_
  * Oxide.Unity - _Provides support for [Unity](http://unity3d.com/) powered games_
- * Oxide.Rust - _Provides support for the new [Rust](http://playrust.com/) server_
-
- ## Other Extensions
- * Oxide.JavaScript - _Allows plugins written in [JavaScript](http://en.wikipedia.org/wiki/JavaScript) or [CoffeeScript](http://coffeescript.org/) to be loaded_
- * Oxide.Lua - _Allows plugins written in [Lua](http://www.lua.org/) to be loaded_
- * Oxide.Python - _Allows plugins written in [Python](http://en.wikipedia.org/wiki/Python_(programming_language)) to be loaded_
+ * Oxide.GettingOverIt - _Provides support for the Getting Over It game_
 
 ## Open Source
 
@@ -33,7 +28,7 @@ While we recommend using one of the [official release builds][downloads], you ca
 
  1. Download a Git client such as [GitHub Desktop](https://desktop.github.com/) or [SourceTree](https://www.sourcetreeapp.com/).
 
- 2. Clone the repo `https://github.com/OxideMod/Oxide.Rust.git` _(recommended)_ or download and extract the [latest zip](https://github.com/OxideMod/Oxide.Rust/archive/master.zip) archive.
+ 2. <del>Clone the repo `https://github.com/OxideMod/Oxide.Rust.git` _(recommended)_ or download and extract the [latest zip](https://github.com/OxideMod/Oxide.Rust/archive/master.zip) archive.</del>
 
  3. Download and install [Visual Studio 2017](https://www.visualstudio.com/downloads/) _(community is free, but any edition will work)_ if you do not have it installed already.
 
