@@ -14,14 +14,12 @@ namespace Oxide.GettingOverIt.Plugins
         {
             Author = "Skipcast";
             Title = "Test plugin";
-
-            Interface.Oxide.LogDebug("TestPlugin constructed");
         }
 
         [HookMethod("Init")]
         private void OnInit()
         {
-            Interface.Oxide.LogInfo("Test from TestPlugin");
+            /*Interface.Oxide.LogInfo("Test from TestPlugin");
 
             var allObjects = GameObject.FindObjectsOfType<MonoBehaviour>().Select(behaviour => behaviour.gameObject).Where(go => go.activeInHierarchy);
 
@@ -30,7 +28,9 @@ namespace Oxide.GettingOverIt.Plugins
                 Interface.Oxide.LogDebug(go.name);
             }
 
-            Interface.Oxide.LogDebug("Init done in TestPlugin");
+            Interface.Oxide.LogDebug("Init done in TestPlugin");*/
+
+            Interface.Oxide.LogDebug("Init done");
         }
 
         [HookMethod("OnGameQuit")]
