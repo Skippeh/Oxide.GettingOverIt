@@ -2,6 +2,7 @@
 {
     public enum SceneType
     {
+        Invalid,
         Menu,
         Game
     }

@@ -40,8 +40,12 @@ namespace Oxide.GettingOverIt
         {
             if (initialized)
             {
-                // Call OnGameInitialized on hotloaded plugins.
-                plugin.CallHook("OnGameInitialized");
+                Scene currentScene = SceneManager.GetActiveScene();
+                SceneType currentSceneType = GetSceneType(currentScene);
+
+                // Call init events on hotloaded plugins.
+                plugin.CallHook("Init");
+                plugin.CallHook("OnSceneChanged", currentSceneType, currentScene);
             }
         }
 
