@@ -12,10 +12,7 @@ namespace Oxide.GettingOverIt
     public class GOICore : CSPlugin
     {
         private bool initialized;
-
-        /*private GameObject componentObject;
-        private GOIComponent component;*/
-
+        
         public GOICore()
         {
             Title = "Getting Over It with Bennett Foddy";
@@ -30,10 +27,7 @@ namespace Oxide.GettingOverIt
                 return;
             
             Application.logMessageReceived += OnLogMessageReceived;
-
-            /*componentObject = new GameObject("Oxide.GettingOverIt");
-            component = componentObject.AddComponent<GOIComponent>();*/
-
+            
             SceneManager.activeSceneChanged += OnNewScene;
 
             initialized = true;
@@ -55,35 +49,32 @@ namespace Oxide.GettingOverIt
         private void OnGameQuit()
         {
             Interface.CallHook("OnGameQuit");
-
-            //GameObject.Destroy(componentObject);
             Interface.Oxide.OnShutdown();
         }
 
         [HookMethod("IOnLoadGame")]
         private void OnLoadGame(Saviour saviour, SaveState saveState)
         {
-            Interface.Call("OnLoadGame", saviour, saveState);
+            Interface.CallHook("OnLoadGame", saviour, saveState);
         }
 
         private void OnNewScene(Scene oldScene, Scene newScene)
         {
-            SceneType newSceneType;
-            
+            Interface.CallHook("OnSceneChanged", GetSceneType(newScene), newScene);
+        }
+
+        private static SceneType GetSceneType(Scene newScene)
+        {
             switch (newScene.name)
             {
                 case "Loader":
-                    newSceneType = SceneType.Menu;
-                    break;
+                    return SceneType.Menu;
                 case "Mian":
-                    newSceneType = SceneType.Game;
-                    break;
+                    return SceneType.Game;
                 default:
                     Interface.Oxide.LogError($"Unknown scene loaded: {newScene.name} (build index: {newScene.buildIndex})");
-                    return;
+                    return SceneType.Invalid;
             }
-            
-            Interface.Call("OnSceneChanged", newSceneType, newScene);
         }
 
         private void OnLogMessageReceived(string condition, string stacktrace, LogType type)
