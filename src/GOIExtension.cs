@@ -19,7 +19,6 @@ namespace Oxide.GettingOverIt
         public override string Name => "Getting Over It with Bennett Foddy";
         public override string Author => AssemblyAuthors;
         public override VersionNumber Version => AssemblyVersion;
-        public override bool IsGameExtension => true;
 
         public override string[] WhitelistAssemblies => new string[]
         {
@@ -31,12 +30,10 @@ namespace Oxide.GettingOverIt
             "Steamworks", "System.Collections", "System.Security.Cryptography", "System.Text", "UnityEngine"
         };
 
+        public override void Load() => Manager.RegisterPluginLoader(new GOIPluginLoader());
+
         public override void OnModLoad()
         {
-            if (Interface.Oxide.EnableConsole())
-            {
-
-            }
         }
     }
 }

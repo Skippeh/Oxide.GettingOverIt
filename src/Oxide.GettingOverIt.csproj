@@ -1,71 +1,103 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DF483424-72B1-4BA7-9FE1-18A66DD6F7B5}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Oxide.GettingOverIt</RootNamespace>
+    <Version>1.0.0</Version>
     <AssemblyName>Oxide.GettingOverIt</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <Authors>Oxide and Contributors</Authors>
+    <Description>Getting Over It with Bennett Foddy extension for the Oxide modding framework</Description>
+    <!--<RepositoryUrl>https://github.com/OxideMod/Oxide.Rust</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/OxideMod/Oxide.Rust/blob/develop/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/OxideMod/Oxide.Rust</PackageProjectUrl>
+    <PackageIconUrl>https://avatars1.githubusercontent.com/u/10712027?s=64</PackageIconUrl>-->
+    <Copyright>Copyright (c) 2017-$([System.DateTime]::Now.Year) $(Authors)</Copyright>
+    <PackageTags>gaming modding plugins unity unity3d</PackageTags>
+    <TargetFramework>net35</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <ManagedDir>GettingOverIt_Data\Managed</ManagedDir>
     <SteamAppId>240720</SteamAppId>
     <SteamBranch>public</SteamBranch>
     <SteamLogin>anonymous</SteamLogin>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <!--
+      Workaround for targeting net35 with dotnet CLI
+      https://github.com/Microsoft/msbuild/issues/1333#issuecomment-296346352
+    -->
+    <FrameworkPathOverride Condition="'$(TargetFramework)' == 'net35' And '$(OS)' == 'Windows_NT'">C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
+    <FrameworkPathOverride Condition="'$(TargetFramework)' == 'net35' And '$(OS)' == 'OSX'">/Library/Frameworks/Mono.framework/Versions/Current/lib/mono/2.0-api</FrameworkPathOverride>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Oxide.References" Version="2.0.*" />
     <PackageReference Include="Oxide.Core" Version="2.0.*" />
-    <PackageReference Include="Oxide.CSharp" Version="2.0.*" />
+    <!--<PackageReference Include="Oxide.CSharp" Version="2.0.*" />-->
     <PackageReference Include="Oxide.MySql" Version="2.0.*" />
     <PackageReference Include="Oxide.SQLite" Version="2.0.*" />
     <PackageReference Include="Oxide.Unity" Version="2.0.*" />
     <Reference Include="Assembly-CSharp">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dependencies\$(ManagedDir)\Assembly-CSharp.dll</HintPath>
+      <HintPath>Dependencies\Patched\$(ManagedDir)\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>Dependencies\Patched\$(ManagedDir)\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib">
+      <HintPath>Dependencies\Patched\$(ManagedDir)\mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>Dependencies\Patched\$(ManagedDir)\System.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>Dependencies\Patched\$(ManagedDir)\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>Dependencies\$(ManagedDir)\UnityEngine.UI.dll</HintPath>
+      <HintPath>Dependencies\Patched\$(ManagedDir)\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Dependencies\$(ManagedDir)\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <None Remove="Bundle\**; Files\**; Patched\**; **\Original\**; *.config; *.opj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GOICore.cs" />
-    <Compile Include="GOIExtension.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Folder Include="Dependencies\" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+  <Target Name="Clean">
+    <RemoveDir Directories="$(ProjectDir)\bin\Bundle\$(PackageId)" Condition="Exists('$(ProjectDir)\bin\Bundle\$(PackageId)')" />
+  </Target>
+  <Target Name="ChangeAliasesOfStrongNameAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+    <ItemGroup>
+      <ReferencePath Condition="'%(FileName)' == 'Oxide.References'">
+        <Aliases>Oxide</Aliases>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>
   <Target Name="BeforeBuild">
     <!-- Currently only works on Windows due to Windows-only tools used -->
-    <Exec Command="powershell -ExecutionPolicy Bypass $(SolutionDir)Steam.ps1 -project '$(AssemblyName)' -dotnet 'net35' -appid '$(SteamAppId)' -branch '$(SteamBranch)' -managed '$(ManagedDir)'" />
+    <Exec Command="powershell -ExecutionPolicy Bypass &quot;$(SolutionDir)\Steam.ps1&quot; -project $(AssemblyName) -dotnet $(TargetFramework) -appid $(SteamAppId) -branch '$(SteamBranch)' -managed '$(ManagedDir)'" />
+  </Target>
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <CoreFiles Include="$(TargetDir)\Oxide.*.dll" />
+      <PatchedFiles Include="$(ProjectDir)\Dependencies\Patched\$(ManagedDir)\Assembly-CSharp.dll" />
+      <PatchedFiles Include="$(ProjectDir)\Dependencies\Patched\$(ManagedDir)\System.Xml.dll" />
+      <ContentFiles Include="$(SolutionDir)\packages\oxide.csharp\**\lib\any\*.*" />
+      <ContentFiles Include="$(SolutionDir)\packages\oxide.references\**\lib\any\*.*" />
+      <ContentFiles Include="$(SolutionDir)\packages\oxide.mysql\**\lib\any\*.*; $(SolutionDir)\packages\oxide.mysql\**\lib\$(TargetFramework)\*.*" />
+      <ContentFiles Include="$(SolutionDir)\packages\oxide.sqlite\**\lib\any\*.*; $(SolutionDir)\packages\oxide.sqlite\**\lib\$(TargetFramework)\*.*" />
+      <ContentX64Files Include="$(SolutionDir)\packages\oxide.references\**\lib\any\x64\*.*; $(SolutionDir)\packages\oxide.sqlite\**\lib\any\x64\*.*" />
+      <ContentX86Files Include="$(SolutionDir)\packages\oxide.references\**\lib\any\x86\*.*; $(SolutionDir)\packages\oxide.sqlite\**\lib\any\x86\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(CoreFiles)" DestinationFiles="@(CoreFiles->'$(ProjectDir)\bin\Bundle\$(PackageId)\$(ManagedDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(ContentFiles)" DestinationFiles="@(ContentFiles->'$(ProjectDir)\bin\Bundle\$(PackageId)\$(ManagedDir)\%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(PatchedFiles)" DestinationFiles="@(PatchedFiles->'$(ProjectDir)\bin\Bundle\$(PackageId)\$(ManagedDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(ContentX64Files)" DestinationFiles="@(ContentX64Files->'$(ProjectDir)\bin\Bundle\$(PackageId)\$(ManagedDir)\x64\%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(ContentX86Files)" DestinationFiles="@(ContentX86Files->'$(ProjectDir)\bin\Bundle\$(PackageId)\$(ManagedDir)\x86\%(Filename)%(Extension)')" />
+    <!--<Exec Command="pdb2mdb %(ManagedFiles.Identity)" Condition="'$(Configuration)' == 'Debug' And '$(OS)' == 'Windows_NT'" IgnoreExitCode="true" />-->
+  </Target>
+  <Target Name="LocalDeploy" AfterTargets="AfterBuild" Condition="Exists('$(SolutionDir)\.deploy')">
+    <Exec Command="start /b /wait taskkill /f /im GettingOverIt.exe /fi &quot;memusage gt 2&quot;" Condition="'$(OS)' == 'Windows_NT'" />
+    <Exec Command="start /b /wait taskkill /f /im CSharpCompiler.exe /fi &quot;memusage gt 2&quot;" Condition="'$(OS)' == 'Windows_NT'" />
+    <ReadLinesFromFile File="$(SolutionDir)\.deploy">
+      <Output PropertyName="DeployPath" TaskParameter="Lines" />
+    </ReadLinesFromFile>
+    <ItemGroup>
+      <DeployFiles Include="$(ProjectDir)\bin\Bundle\$(PackageId)\**\*.*" />
+    </ItemGroup>
+    <Copy Condition="'$(DeployPath)' != ''" SourceFiles="@(DeployFiles)" DestinationFiles="@(DeployFiles->'$(DeployPath)\%(RecursiveDir)%(Filename)%(Extension)')" />
   </Target>
 </Project>
