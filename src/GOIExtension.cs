@@ -1,7 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 using Oxide.Core;
 using Oxide.Core.Extensions;
+using Oxide.GettingOverIt.Loggers;
 
 namespace Oxide.GettingOverIt
 {
@@ -11,7 +13,9 @@ namespace Oxide.GettingOverIt
         internal static readonly AssemblyName AssemblyName = Assembly.GetName();
         internal static readonly VersionNumber AssemblyVersion = new VersionNumber(AssemblyName.Version.Major, AssemblyName.Version.Minor, AssemblyName.Version.Build);
         internal static readonly string AssemblyAuthors = ((AssemblyCompanyAttribute)Attribute.GetCustomAttribute(Assembly, typeof(AssemblyCompanyAttribute), false)).Company;
-        
+
+        private bool consoleAttached;
+
         public GOIExtension(ExtensionManager manager) : base(manager)
         {
         }
@@ -34,6 +38,46 @@ namespace Oxide.GettingOverIt
 
         public override void OnModLoad()
         {
+            if (Interface.Oxide.CheckConsole())
+            {
+                if (Environment.OSVersion.Platform != PlatformID.MacOSX && Environment.OSVersion.Platform != PlatformID.Unix)
+                {
+                    try
+                    {
+                        if (WinNative.AllocConsole() != 0)
+                        {
+                            consoleAttached = true;
+                        }
+                        else
+                        {
+                            throw new NotImplementedException();
+                        }
+                    }
+                    catch
+                    {
+                        Interface.Oxide.LogError("Failed to AllocConsole on Windows platform.");
+                    }
+                }
+
+                try
+                {
+                    var writer = new StreamWriter(Console.OpenStandardOutput()) {AutoFlush = true};
+                    Console.SetOut(writer);
+                    Interface.Oxide.RootLogger.AddLogger(new ConsoleLogger());
+                }
+                catch (Exception ex)
+                {
+                    Interface.Oxide.LogError("Failed to initialize console: " + ex);
+                }
+            }
+        }
+
+        public override void OnShutdown()
+        {
+            if (consoleAttached)
+            {
+                WinNative.FreeConsole();
+            }
         }
     }
 }

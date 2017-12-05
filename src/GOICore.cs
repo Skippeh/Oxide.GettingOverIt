@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using Oxide.Core;
 using Oxide.Core.Plugins;
+using Oxide.GettingOverIt.Loggers;
 using Oxide.GettingOverIt.Types;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,7 +28,7 @@ namespace Oxide.GettingOverIt
         {
             if (initialized)
                 return;
-
+            
             Application.logMessageReceived += OnLogMessageReceived;
 
             /*componentObject = new GameObject("Oxide.GettingOverIt");
@@ -37,7 +39,6 @@ namespace Oxide.GettingOverIt
             initialized = true;
             Interface.CallHook("Init");
             OnNewScene(default(Scene), SceneManager.GetActiveScene());
-            Interface.Oxide.LogDebug("Init done in Core");
         }
 
         [HookMethod("OnPluginLoaded")]
@@ -67,8 +68,6 @@ namespace Oxide.GettingOverIt
 
         private void OnNewScene(Scene oldScene, Scene newScene)
         {
-            //Interface.Oxide.LogDebug($"Scene changed to {newScene.name}.");
-
             SceneType newSceneType;
             
             switch (newScene.name)
@@ -89,7 +88,23 @@ namespace Oxide.GettingOverIt
 
         private void OnLogMessageReceived(string condition, string stacktrace, LogType type)
         {
-            Interface.Oxide.LogInfo(type + "\t" + condition + "\n" + stacktrace);
+            string logString = condition + (stacktrace != null ? "\n" + stacktrace : "");
+            logString = logString.Trim();
+
+            switch (type)
+            {
+                case LogType.Log:
+                    Interface.Oxide.LogInfo(logString);
+                    break;
+                case LogType.Warning:
+                    Interface.Oxide.LogWarning(logString);
+                    break;
+                case LogType.Error:
+                case LogType.Assert:
+                case LogType.Exception:
+                    Interface.Oxide.LogError(logString);
+                    break;
+            }
         }
     }
 }
