@@ -36,9 +36,9 @@ While we recommend using one of the [official release builds][downloads], you ca
 
  5. Open the `Oxide.GettingOverIt.sln` solution file in Visual Studio 2017.
  
- 6. Create a directory called tools, then a file named `steamlogin`. Write a steam username and password that has access to the game. Alternatively copy and paste your locally installed game files into `src\Dependencies\Patched\GettingOverIt_Data\Managed`.
+ 6. Create a directory called tools, then a file named `.steamlogin`. Write a steam username and password that has access to the game. Alternatively copy and paste your locally installed game files into `src\Dependencies\Patched\GettingOverIt_Data\Managed`.
 
- 7. Build the solution. If you get errors, you're likely not using the latest Visual Studio 2017; which is required as Oxide uses some [C# 6.0](https://github.com/dotnet/roslyn/wiki/New-Language-Features-in-C%23-6) features.
+ 7. Build the solution. If you get errors, you're likely not using the latest Visual Studio 2017; which is required as Oxide uses some [C# 6.0](https://github.com/dotnet/roslyn/wiki/New-Language-Features-in-C%23-6) features. You can ignore steam related errors if you don't have a .steamlogin file and copied your local game files.
 
  8. Copy the files from the `Bundles` directory to the root of your installation folder, then just start the game!
 
