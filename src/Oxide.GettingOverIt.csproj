@@ -17,7 +17,6 @@
     <ManagedDir>GettingOverIt_Data\Managed</ManagedDir>
     <SteamAppId>240720</SteamAppId>
     <SteamBranch>public</SteamBranch>
-    <SteamLogin>anonymous</SteamLogin>
     <!--
       Workaround for targeting net35 with dotnet CLI
       https://github.com/Microsoft/msbuild/issues/1333#issuecomment-296346352
@@ -68,7 +67,7 @@
   </Target>
   <Target Name="BeforeBuild">
     <!-- Currently only works on Windows due to Windows-only tools used -->
-    <Exec Command="powershell -ExecutionPolicy Bypass &quot;$(SolutionDir)\Steam.ps1&quot; -project $(AssemblyName) -dotnet $(TargetFramework) -appid $(SteamAppId) -branch '$(SteamBranch)' -managed '$(ManagedDir)'" />
+    <Exec Command="powershell -ExecutionPolicy Bypass &quot;$(SolutionDir)\Steam.ps1&quot; -project $(AssemblyName) -dotnet $(TargetFramework) -appid $(SteamAppId) -branch '$(SteamBranch)' -managed '$(ManagedDir)' -access ''" />
   </Target>
   <Target Name="AfterBuild">
     <ItemGroup>

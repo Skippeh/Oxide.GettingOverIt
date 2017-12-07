@@ -123,6 +123,8 @@ function Get-Downloader {
 }
 
 function Get-Dependencies {
+	$skipDownload = $false
+
     if ($access.ToLower() -ne "nosteam") {
         # TODO: Add handling for SteamGuard code entry/use
         # Check if Steam login information is required or not
@@ -139,31 +141,35 @@ function Get-Dependencies {
             } elseif ($env:STEAM_USERNAME -and $env:STEAM_PASSWORD) {
                 $login = "-username $env:STEAM_USERNAME -password $env:STEAM_PASSWORD"
             } else {
-                Write-Host "No Steam credentials found, skipping build for $game_name"
-                exit 1
-                if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
+				Write-Host "No Steam credentials found, skipping download for $game_name"
+				$skipDownload = $true
             }
-        }
+		}
+		else {
+			Write-Host "Using anonymous account"
+		}
 
-        # Cleanup existing game files, else they aren't always the latest
-        #Remove-Item $managed_dir -Include *.dll, *.exe -Exclude "Oxide.Core.dll" -Verbose –Force
+		if (!$skipDownload) {
+			# Cleanup existing game files, else they aren't always the latest
+			#Remove-Item $managed_dir -Include *.dll, *.exe -Exclude "Oxide.Core.dll" -Verbose –Force
 
-        # TODO: Check for and compare Steam buildid before downloading again
+			# TODO: Check for and compare Steam buildid before downloading again
 
-        # Attempt to run DepotDownloader to get game DLLs
-        try {
-            Start-Process "$tools_dir\DepotDownloader.exe" -ArgumentList "$login -app $appid -branch $branch $depot -dir $patch_dir -filelist $tools_dir\.references" -NoNewWindow -Wait
-        } catch {
-            Write-Host "Could not start or complete DepotDownloader process"
-            Write-Host $_.Exception.Message
-            if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
-            exit 1
-        }
+			# Attempt to run DepotDownloader to get game DLLs
+			try {
+				Start-Process "$tools_dir\DepotDownloader.exe" -ArgumentList "$login -app $appid -branch $branch $depot -dir $patch_dir -filelist $tools_dir\.references" -NoNewWindow -Wait
+			} catch {
+				Write-Host "Could not start or complete DepotDownloader process"
+				Write-Host $_.Exception.Message
+				if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode) }
+				exit 1
+			}
 
-        # TODO: Store Steam buildid somewhere for comparison during next check
-        # TODO: Confirm all dependencies were downloaded (no 0kb files), else stop/retry and error with details
-    }
-
+			# TODO: Store Steam buildid somewhere for comparison during next check
+			# TODO: Confirm all dependencies were downloaded (no 0kb files), else stop/retry and error with details
+		}
+	}
+	
     # TODO: Check Oxide.Core.dll version and update if needed
     # Grab latest Oxide.Core.dll build
     Write-Host "Copying latest build of Oxide.Core.dll for $game_name"
