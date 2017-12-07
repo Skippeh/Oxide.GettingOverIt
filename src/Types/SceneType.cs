@@ -4,6 +4,7 @@
     {
         Invalid,
         Menu,
-        Game
+        Game,
+        Credits
     }
 }

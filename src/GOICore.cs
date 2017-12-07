@@ -75,6 +75,8 @@ namespace Oxide.GettingOverIt
                     return SceneType.Menu;
                 case "Mian":
                     return SceneType.Game;
+                case "Credits":
+                    return SceneType.Credits;
                 default:
                     Interface.Oxide.LogError($"Unknown scene loaded: {newScene.name} (build index: {newScene.buildIndex})");
                     return SceneType.Invalid;
