@@ -19,17 +19,6 @@ namespace Oxide.GettingOverIt.Plugins
         [HookMethod("Init")]
         private void OnInit()
         {
-            /*Interface.Oxide.LogInfo("Test from TestPlugin");
-
-            var allObjects = GameObject.FindObjectsOfType<MonoBehaviour>().Select(behaviour => behaviour.gameObject).Where(go => go.activeInHierarchy);
-
-            foreach (GameObject go in allObjects)
-            {
-                Interface.Oxide.LogDebug(go.name);
-            }
-
-            Interface.Oxide.LogDebug("Init done in TestPlugin");*/
-
             Interface.Oxide.LogDebug("Init done");
         }
 
