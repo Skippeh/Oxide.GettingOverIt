@@ -1,7 +1,7 @@
 [license]: https://tldrlegal.com/l/mit
 [docs]: http://docs.oxidemod.org
 [forums]: http://oxidemod.org/
-[issues]: https://github.com/OxideMod/Oxide/issues
+[issues]: https://github.com/Skippeh/Oxide.GettingOverIt/issues
 [downloads]: http://oxidemod.org/downloads/
 
 # Oxide Mod [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)][License] [![Build Status](https://ci.appveyor.com/api/projects/status/b7h4nw8t8d05jsnb?svg=true)](https://ci.appveyor.com/project/oxidemod/oxide)
