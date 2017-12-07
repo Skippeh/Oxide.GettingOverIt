@@ -46,16 +46,8 @@ While we recommend using one of the [official release builds][downloads], you ca
 
 ## Getting Help
 
-* The best place to start with plugin development is the official [API documentation][docs].
-* Still need help? Search our [community forums][forums] or create a new thread if needed.
+* There is currently no documentation for this extension. You will have to look through the source code for now.
 
 ## Contributing
 
-* Got an idea or suggestion? Use the [community forums][forums] to share and discuss it.
-* Troubleshoot issues you run into on the community forums so everyone can help and reference it later.
 * File detailed [issues] on GitHub (version number, what you did, and actual vs expected outcomes).
-* Want Oxide and plugins for your favorite game? Hook us up and we'll see what we can do!
-
-## Reporting Security Issues
-
-Please disclose security issues responsibly by emailing security@oxidemod.org with a full description. We'll work on releasing an updated version as quickly as possible. Please do not email non-security issues; use the [forums] or [issue tracker][issues] instead.
