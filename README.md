@@ -46,7 +46,7 @@ While we recommend using one of the [official release builds][downloads], you ca
 
 ## Getting Help
 
-* There is currently no documentation for this extension. You will have to look through the source code for now.
+* There is currently no documentation for this extension. You will have to look through the source code for now. [TestPlugin.cs](https://github.com/Skippeh/Oxide.GettingOverIt/blob/development/src/Plugins/TestPlugin.cs)
 
 ## Contributing
 
