@@ -42,7 +42,7 @@ While we recommend using one of the [official release builds][downloads], you ca
 
  8. Copy the files from the `Bundles` directory to the root of your installation folder, then just start the game!
 
-8a. Alternately, create a .deploy file under the desired game extension directory (ie. Games/Oxide.Rust) with a path to automatically deploy to.
+ 8a. Alternately, create a .deploy file under the desired game extension directory (ie. Games/Oxide.Rust) with a path to automatically deploy to.
 
 ## Getting Help
 
