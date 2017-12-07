@@ -12,11 +12,11 @@ Support for each game and plugin language is added via extensions. When loading,
 
 ## Bundled Extensions
 
- * <del>Oxide.CSharp - _Allows plugins written in [CSharp](http://en.wikipedia.org/wiki/C_Sharp_(programming_language)) to be loaded_</del>
+ * <del>Oxide.CSharp - _Allows plugins written in [CSharp](http://en.wikipedia.org/wiki/C_Sharp_(programming_language)) to be loaded_</del> Currently not supported because the game uses .net 2.0 subset.
  * Oxide.MySql - _Allows plugins to access a [MySQL](http://www.mysql.com/) database_
  * Oxide.SQLite - _Allows plugins to access a [SQLite](http://www.sqlite.org/) database_
  * Oxide.Unity - _Provides support for [Unity](http://unity3d.com/) powered games_
- * Oxide.GettingOverIt - _Provides support for the Getting Over It game_
+ * Oxide.GettingOverIt - _Provides support for the Getting Over It with Bennett Foddy game_
 
 ## Open Source
 
@@ -28,7 +28,7 @@ While we recommend using one of the [official release builds][downloads], you ca
 
  1. Download a Git client such as [GitHub Desktop](https://desktop.github.com/) or [SourceTree](https://www.sourcetreeapp.com/).
 
- 2. <del>Clone the repo `https://github.com/OxideMod/Oxide.Rust.git` _(recommended)_ or download and extract the [latest zip](https://github.com/OxideMod/Oxide.Rust/archive/master.zip) archive.</del>
+ 2. Clone the repo `https://github.com/Skippeh/Oxide.GettingOverIt.git` _(recommended)_ or download and extract the [latest zip](https://github.com/Skippeh/Oxide.GettingOverIt/archive/master.zip) archive.
 
  3. Download and install [Visual Studio 2017](https://www.visualstudio.com/downloads/) _(community is free, but any edition will work)_ if you do not have it installed already.
 
@@ -38,7 +38,7 @@ While we recommend using one of the [official release builds][downloads], you ca
 
  6. Build the solution. If you get errors, you're likely not using the latest Visual Studio 2017; which is required as Oxide uses some [C# 6.0](https://github.com/dotnet/roslyn/wiki/New-Language-Features-in-C%23-6) features.
 
- 7. Copy the files from the `Bundles` directory for your game of choice to your server installation, then just start the server!
+ 7. Copy the files from the `Bundles` directory to the root of your installation folder, then just start the game!
 
  7a. Alternately, create a .deploy file under the desired game extension directory (ie. Games/Oxide.Rust) with a path to automatically deploy to.
 
