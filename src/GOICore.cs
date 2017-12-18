@@ -27,11 +27,9 @@ namespace Oxide.GettingOverIt
                 return;
             
             Application.logMessageReceived += OnLogMessageReceived;
-            
             SceneManager.activeSceneChanged += OnNewScene;
-
             initialized = true;
-            Interface.CallHook("Init");
+            
             OnNewScene(default(Scene), SceneManager.GetActiveScene());
         }
 
@@ -44,7 +42,6 @@ namespace Oxide.GettingOverIt
                 SceneType currentSceneType = GetSceneType(currentScene);
 
                 // Call init events on hotloaded plugins.
-                plugin.CallHook("Init");
                 plugin.CallHook("OnSceneChanged", currentSceneType, currentScene);
             }
         }

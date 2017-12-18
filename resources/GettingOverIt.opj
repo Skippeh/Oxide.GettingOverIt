@@ -1,6 +1,6 @@
 {
   "Name": "Getting Over It",
-  "TargetDirectory": "E:\\Games\\Getting Over It With Bennett Foddy\\GettingOverIt_Data\\Managed",
+  "TargetDirectory": "E:\\Projects\\Oxide\\Oxide.GettingOverIt\\src\\Dependencies\\Patched\\GettingOverIt_Data\\Managed",
   "Manifests": [
     {
       "AssemblyName": "Assembly-CSharp.dll",
@@ -8,7 +8,7 @@
         {
           "Type": "InitOxide",
           "Hook": {
-            "InjectionIndex": 147,
+            "InjectionIndex": 182,
             "HookTypeName": "Initialize Oxide",
             "Name": "Init Oxide",
             "HookName": "",
@@ -21,7 +21,7 @@
               "ReturnType": "System.Void",
               "Parameters": []
             },
-            "MSILHash": "xLU5rVan5vQSuk0KkxKSwyQnJEKeOdrC+9eTcz3oxz8=",
+            "MSILHash": "VxeLqIN5NXYJ2OITlMn/lHUQGQj/OMCNhrhRb3fhwJA=",
             "BaseHookName": null,
             "HookCategory": null
           }
@@ -47,7 +47,7 @@
                 "SaveState"
               ]
             },
-            "MSILHash": "h2ZpEHL5A/565Og5rNd6Npo88DotQeieix5M6GjgPeM=",
+            "MSILHash": "WHX9LhCrI8JiPRPcXRUVa5/iaXdeqN3/X+8QoXekWas=",
             "BaseHookName": null,
             "HookCategory": null
           }
@@ -79,7 +79,7 @@
         {
           "Type": "Simple",
           "Hook": {
-            "InjectionIndex": 148,
+            "InjectionIndex": 183,
             "ReturnBehavior": 0,
             "ArgumentBehavior": 0,
             "ArgumentString": null,
@@ -95,7 +95,7 @@
               "ReturnType": "System.Void",
               "Parameters": []
             },
-            "MSILHash": "xLU5rVan5vQSuk0KkxKSwyQnJEKeOdrC+9eTcz3oxz8=",
+            "MSILHash": "VxeLqIN5NXYJ2OITlMn/lHUQGQj/OMCNhrhRb3fhwJA=",
             "BaseHookName": "Init Oxide",
             "HookCategory": null
           }
