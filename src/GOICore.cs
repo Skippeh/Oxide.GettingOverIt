@@ -20,7 +20,7 @@ namespace Oxide.GettingOverIt
             IsCorePlugin = true;
         }
 
-        [HookMethod("IInit")]
+        [HookMethod("Init")]
         private void Init()
         {
             if (initialized)
@@ -30,7 +30,7 @@ namespace Oxide.GettingOverIt
             SceneManager.activeSceneChanged += OnNewScene;
             initialized = true;
             
-            OnNewScene(default(Scene), SceneManager.GetActiveScene());
+            //OnNewScene(default(Scene), SceneManager.GetActiveScene());
         }
 
         [HookMethod("OnPluginLoaded")]
