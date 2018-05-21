@@ -46,6 +46,9 @@
     <Reference Include="UnityEngine">
       <HintPath>Dependencies\Patched\$(ManagedDir)\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>Dependencies\Patched\GettingOverIt_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Dependencies\Patched\$(ManagedDir)\UnityEngine.UI.dll</HintPath>
     </Reference>
