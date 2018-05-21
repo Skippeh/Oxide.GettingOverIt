@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using System.Text;
 using Oxide.Core;
 using Oxide.Core.Extensions;
 using Oxide.GettingOverIt.Loggers;
@@ -61,7 +62,7 @@ namespace Oxide.GettingOverIt
 
                 try
                 {
-                    var writer = new StreamWriter(Console.OpenStandardOutput()) {AutoFlush = true};
+                    var writer = new StreamWriter(Console.OpenStandardOutput(), Encoding.UTF8) {AutoFlush = true};
                     Console.SetOut(writer);
                     Interface.Oxide.RootLogger.AddLogger(new ConsoleLogger());
                 }
