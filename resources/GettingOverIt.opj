@@ -38,7 +38,7 @@
             "HookName": "IOnLoadGame",
             "AssemblyName": "Assembly-CSharp.dll",
             "TypeName": "Saviour",
-            "Flagged": false,
+            "Flagged": true,
             "Signature": {
               "Exposure": 2,
               "Name": "Load",
@@ -47,7 +47,7 @@
                 "SaveState"
               ]
             },
-            "MSILHash": "fw5VMqKuaBWqW7dtPXtdd9LRUNieCM8vze2nxPGS1c4=",
+            "MSILHash": "maUW+WrarWyhgRldE6hsNGcDm355Rw+abHhQclvNb04=",
             "BaseHookName": null,
             "HookCategory": null
           }
