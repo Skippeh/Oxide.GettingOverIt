@@ -5,6 +5,6 @@ namespace Oxide.GettingOverIt
 {
     public class GOIPluginLoader : PluginLoader
     {
-        public override Type[] CorePlugins => new [] { typeof(GOICore), typeof(Plugins.TestPlugin) };
+        public override Type[] CorePlugins => new [] { typeof(GOICore) };
     }
 }
