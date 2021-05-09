@@ -53,9 +53,13 @@
       <HintPath>Dependencies\Patched\$(ManagedDir)\UnityEngine.UI.dll</HintPath>
     </Reference>
     <None Remove="Bundle\**; Files\**; Patched\**; **\Original\**; *.config; *.opj" />
+    <None Remove="Dependencies\**" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dependencies\" />
+    <Compile Remove="Dependencies\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Dependencies\**" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <Target Name="Clean">
