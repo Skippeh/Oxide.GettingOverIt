@@ -21,7 +21,7 @@
               "ReturnType": "System.Void",
               "Parameters": []
             },
-            "MSILHash": "VxeLqIN5NXYJ2OITlMn/lHUQGQj/OMCNhrhRb3fhwJA=",
+            "MSILHash": "N88O9vjMy0NGWr7n/4lOdBS6D7RCexlJFF7aqslr+7w=",
             "BaseHookName": null,
             "HookCategory": null
           }
@@ -38,7 +38,7 @@
             "HookName": "IOnLoadGame",
             "AssemblyName": "Assembly-CSharp.dll",
             "TypeName": "Saviour",
-            "Flagged": true,
+            "Flagged": false,
             "Signature": {
               "Exposure": 2,
               "Name": "Load",
@@ -47,7 +47,7 @@
                 "SaveState"
               ]
             },
-            "MSILHash": "maUW+WrarWyhgRldE6hsNGcDm355Rw+abHhQclvNb04=",
+            "MSILHash": "sMqNitkdR97a4NuUSODuAC8hoA2Zuc2NJFLjX06f7ss=",
             "BaseHookName": null,
             "HookCategory": null
           }
@@ -95,7 +95,7 @@
               "ReturnType": "System.Void",
               "Parameters": []
             },
-            "MSILHash": "VxeLqIN5NXYJ2OITlMn/lHUQGQj/OMCNhrhRb3fhwJA=",
+            "MSILHash": "N88O9vjMy0NGWr7n/4lOdBS6D7RCexlJFF7aqslr+7w=",
             "BaseHookName": "Init Oxide",
             "HookCategory": null
           }
