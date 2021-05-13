@@ -25,6 +25,7 @@
     <FrameworkPathOverride Condition="'$(TargetFramework)' == 'net35' And '$(OS)' == 'OSX'">/Library/Frameworks/Mono.framework/Versions/Current/lib/mono/2.0-api</FrameworkPathOverride>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Oxide.CSharp" Version="2.0.4044" />
     <PackageReference Include="Oxide.References" Version="2.0.*" />
     <PackageReference Include="Oxide.Core" Version="2.0.*" />
     <!--<PackageReference Include="Oxide.CSharp" Version="2.0.*" />-->
@@ -83,6 +84,7 @@
       <ContentFiles Include="$(SolutionDir)\packages\oxide.core\**\lib\netstandard2.0\*.*" />
       <ContentFiles Include="$(SolutionDir)\packages\oxide.references\**\lib\any\netstandard2.0\*.*" />
       <ContentFiles Include="$(SolutionDir)\packages\oxide.references\**\lib\netstandard2.0\*.*" />
+      <ContentFiles Include="$(SolutionDir)\packages\oxide.csharp\**\lib\netstandard2.0\*.*" />
       <ContentX64Files Include="$(SolutionDir)\packages\oxide.references\**\lib\any\x64\*.*" />
       <ContentX86Files Include="$(SolutionDir)\packages\oxide.references\**\lib\any\x86\*.*" />
     </ItemGroup>

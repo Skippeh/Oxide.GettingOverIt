@@ -5,6 +5,7 @@ using System.Text;
 using Oxide.Core;
 using Oxide.Core.Extensions;
 using Oxide.GettingOverIt.Loggers;
+using Oxide.Plugins;
 
 namespace Oxide.GettingOverIt
 {
@@ -25,20 +26,128 @@ namespace Oxide.GettingOverIt
         public override string Author => AssemblyAuthors;
         public override VersionNumber Version => AssemblyVersion;
 
-        public override string[] WhitelistAssemblies => new string[]
+        public override string[] DefaultReferences => new[]
         {
-            "Assembly-CSharp", "Assembly-CSharp-firstpass", "mscorlib", "Oxide.Core", "System", "System.Core", "UnityEngine", "UnityEngine.UI"
+            "ArabicSupport",
+            "Assembly-CSharp-firstpass",
+            "Assembly-CSharp",
+            "Oxide.Core",
+            "Oxide.GettingOverIt",
+            "netstandard",
+            "Purchasing.Common",
+            "Rewired_Core",
+            "Rewired_Windows",
+            "System.Drawing",
+            "Unity.Analytics.DataPrivacy",
+            "Unity.Postprocessing.Runtime",
+            "Unity.TextMeshPro",
+            "Unity.Timeline",
+            "UnityEngine.AccessibilityModule",
+            "UnityEngine.Advertisements",
+            "UnityEngine.AIModule",
+            "UnityEngine.AndroidJNIModule",
+            "UnityEngine.AnimationModule",
+            "UnityEngine.ARModule",
+            "UnityEngine.AssetBundleModule",
+            "UnityEngine.AudioModule",
+            "UnityEngine.ClothModule",
+            "UnityEngine.ClusterInputModule",
+            "UnityEngine.ClusterRendererModule",
+            "UnityEngine.CoreModule",
+            "UnityEngine.CrashReportingModule",
+            "UnityEngine.DirectorModule",
+            "UnityEngine",
+            "UnityEngine.DSPGraphModule",
+            "UnityEngine.GameCenterModule",
+            "UnityEngine.GIModule",
+            "UnityEngine.GridModule",
+            "UnityEngine.HotReloadModule",
+            "UnityEngine.ImageConversionModule",
+            "UnityEngine.IMGUIModule",
+            "UnityEngine.InputLegacyModule",
+            "UnityEngine.InputModule",
+            "UnityEngine.JSONSerializeModule",
+            "UnityEngine.LocalizationModule",
+            "UnityEngine.Monetization",
+            "UnityEngine.ParticleSystemModule",
+            "UnityEngine.PerformanceReportingModule",
+            "UnityEngine.Physics2DModule",
+            "UnityEngine.PhysicsModule",
+            "UnityEngine.ProfilerModule",
+            "UnityEngine.Purchasing.AppleCore",
+            "UnityEngine.Purchasing.AppleMacosStub",
+            "UnityEngine.Purchasing.AppleStub",
+            "UnityEngine.Purchasing.Codeless",
+            "UnityEngine.Purchasing",
+            "UnityEngine.Purchasing.SecurityCore",
+            "UnityEngine.Purchasing.SecurityStub",
+            "UnityEngine.Purchasing.Stores",
+            "UnityEngine.Purchasing.WinRTCore",
+            "UnityEngine.Purchasing.WinRTStub",
+            "UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule",
+            "UnityEngine.ScreenCaptureModule",
+            "UnityEngine.SharedInternalsModule",
+            "UnityEngine.SpatialTracking",
+            "UnityEngine.SpriteMaskModule",
+            "UnityEngine.SpriteShapeModule",
+            "UnityEngine.StreamingModule",
+            "UnityEngine.SubstanceModule",
+            "UnityEngine.SubsystemsModule",
+            "UnityEngine.TerrainModule",
+            "UnityEngine.TerrainPhysicsModule",
+            "UnityEngine.TextCoreModule",
+            "UnityEngine.TextRenderingModule",
+            "UnityEngine.TilemapModule",
+            "UnityEngine.TLSModule",
+            "UnityEngine.UI",
+            "UnityEngine.UIElementsModule",
+            "UnityEngine.UIElementsNativeModule",
+            "UnityEngine.UIModule",
+            "UnityEngine.UmbraModule",
+            "UnityEngine.UNETModule",
+            "UnityEngine.UnityAnalyticsModule",
+            "UnityEngine.UnityConnectModule",
+            "UnityEngine.UnityCurlModule",
+            "UnityEngine.UnityTestProtocolModule",
+            "UnityEngine.UnityWebRequestAssetBundleModule",
+            "UnityEngine.UnityWebRequestAudioModule",
+            "UnityEngine.UnityWebRequestModule",
+            "UnityEngine.UnityWebRequestTextureModule",
+            "UnityEngine.UnityWebRequestWWWModule",
+            "UnityEngine.VehiclesModule",
+            "UnityEngine.VFXModule",
+            "UnityEngine.VideoModule",
+            "UnityEngine.VirtualTexturingModule",
+            "UnityEngine.VRModule",
+            "UnityEngine.WindModule",
+            "UnityEngine.XR.LegacyInputHelpers",
+            "UnityEngine.XRModule",
+            "ZFBrowser"
         };
 
-        public override string[] WhitelistNamespaces => new string[]
+        public override string[] WhitelistAssemblies => new[]
         {
-            "Steamworks", "System.Collections", "System.Security.Cryptography", "System.Text", "UnityEngine"
+            "Assembly-CSharp", "Assembly-CSharp-firstpass",
+            "mscorlib",
+            "Oxide.Core",
+            "System.Core", "System.Collections", "System.Linq",
+            "UnityEngine",
+            "Oxide.GettingOverIt"
+        };
+
+        public override string[] WhitelistNamespaces => new[]
+        {
+            "System.Collections", "System.Security.Cryptography", "System.Text",
+            "UnityEngine",
+            "Oxide", "Oxide.GettingOverIt"
         };
 
         public override void Load() => Manager.RegisterPluginLoader(new GOIPluginLoader());
 
         public override void OnModLoad()
         {
+            CSharpPluginLoader.PluginReferences.UnionWith(DefaultReferences);
+
             if (Interface.Oxide.CheckConsole())
             {
                 if (Environment.OSVersion.Platform != PlatformID.MacOSX && Environment.OSVersion.Platform != PlatformID.Unix)
